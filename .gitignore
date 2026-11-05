@@ -1,5 +1,5 @@
 node_modules/
 *.env
- uplouds
- /uplouds
- /uplouds/**
+uplouds
+/uplouds
+/uplouds/**
