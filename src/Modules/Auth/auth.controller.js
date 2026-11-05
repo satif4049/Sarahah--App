@@ -36,6 +36,7 @@ authController.post(
       confirmPassword,
       role,
     });
+    console.log(req.rateLimtInfo);
     res.status(201).json({ Message: "User SignUP Successfuly ", resulte });
   },
 );

@@ -22,7 +22,7 @@ export const getUsersProfile = async () => {
 };
 
 export const updateUserProfileById = async ( userId ,{ firstName, lastName, email, password, gender, age, phone }) => {
-  const user = await userRepo.findUserProfileByIdDocument(userId);
+  const user = await userRepo.findDocumentByID(userId);
   if (!user) throw NotFoundException("User Id Not Found" );
   if (firstName) user.firstName = firstName;
   if (lastName) user.lastName = lastName;
@@ -44,7 +44,7 @@ export const updateUserProfileById = async ( userId ,{ firstName, lastName, emai
 };
 
 export const deleteProfileById = async (userId) => {
-  const user = await userRepo.findUserProfileByIdDocument(userId);
+  const user = await userRepo.findDocumentByID(userId);
   if (!user) throw NotFoundException("User Id Not Found");
 
   return user.deleteOne();

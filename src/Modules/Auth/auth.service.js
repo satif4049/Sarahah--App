@@ -138,21 +138,22 @@ return { message: " generate Tokens", accessToken, refreshToken };
  }
 
 export const signIn = async (body) => {
-  const { email, password  } = body;
-  
-  const user = await userRepo.findOneDocument({ email}); 
-        if (!user)
-            throw UnAuthorizedException(" Inavlid Email Or Password");
-console.log({user:user.password , password});
+  const { email, password } = body;
 
-    const isPasswordMatched = await compareTwoHashs(password, user.password);
-   console.log({isPasswordMatched});
-   
-    
-        if (!isPasswordMatched) 
-            throw UnAuthorizedException(" Inavlid Email Or Password");
-     return bulitTokens(user)
+  const user = await userRepo.findOneDocument({ email });
+  if (!user) throw UnAuthorizedException(" Inavlid Email Or Password");
+  console.log({ user: user.password, password });
 
+  const isPasswordMatched = await compareTwoHashs(password, user.password);
+  console.log({ isPasswordMatched });
+
+  if (!isPasswordMatched)
+    throw UnAuthorizedException(" Inavlid Email Or Password");
+
+  if (!user.isEmailVerivcation)
+    throw UnAuthorizedException(" please confirm your email");
+
+  return bulitTokens(user);
 }; 
 
 export const refreshToken= async(userRefreshToken)=>{

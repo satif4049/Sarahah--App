@@ -8,8 +8,8 @@ import  cors from "cors"
 import { redisConnection } from "./Common/Clints/redis.clint.js";
 import helmet from "helmet";
 import { createRateLimiter } from "./Middlewares/rate-limit.middleware.js";
-
-const port = process.env.PORT;
+import messageController from "./Modules/Message/message.controller.js";
+const port = process.env.PORT || 3000;
 const app = express();
 await dpConnection();
 await redisConnection();
@@ -26,6 +26,8 @@ app.use(
 
 app.use("/api/auth", authController);
 app.use("/api/user", userController);
+app.use("/api/messages" , messageController);
+
 
 app.use("/uplouds" , express.static("uplouds"))
 app.get("/", (req, res) => {

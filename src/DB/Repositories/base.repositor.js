@@ -14,7 +14,8 @@
    findOneDocument(filter = {}) {
      return this.model.findOne(filter);
    }
-   findUserProfileByIdDocument(userId) {
+   //  findDocumentByID
+   findDocumentByID(userId) {
      if (!isValidObjectId(userId)) throw new Error("User_ID Is Not Valid");
      return this.model.findById(userId);
    }

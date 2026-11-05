@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
-import { object } from "zod";
 import { genderEnum, roleEnum , providersEnum } from "../../Common/Enum/user.enum.js";
-import { type } from "node:os";
+
 
 
 const userSchema = new mongoose.Schema(
